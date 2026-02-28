@@ -1,0 +1,17 @@
+﻿Testing 50 random reachable targets...
+DLS: max_iters=200, tol=0.3mm
+
+  [ 10/50]  last-10: avg=0.085mm  max=0.299mm  pass_rate=10/10=100.0%
+  [ 20/50]  last-10: avg=0.128mm  max=0.712mm  pass_rate=20/20=100.0%
+  [ 30/50]  last-10: avg=0.045mm  max=0.258mm  pass_rate=30/30=100.0%
+  [ 40/50]  last-10: avg=0.085mm  max=0.298mm  pass_rate=40/40=100.0%
+  [ 50/50]  last-10: avg=0.077mm  max=0.201mm  pass_rate=50/50=100.0%
+
+=======================================================
+  RESULTS over 50 targets
+  Mean error : 0.0840 mm
+  Median err : 0.0410 mm
+  Max error  : 0.7124 mm
+  95th pctile: 0.2802 mm
+  Pass (<1mm): 50/50 = 100.0%
+=======================================================

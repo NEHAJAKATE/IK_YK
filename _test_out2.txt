@@ -1,0 +1,60 @@
+﻿==========================================================
+  URDF-FAITHFUL KINEMATICS VALIDATION
+==========================================================
+
+TEST 1: URDF constants
+  [PASS]  BASE_Z = 25 mm  (joint0 Z offset)  got 25.0
+  [PASS]  D1     = 76 mm  (joint1 Z offset)  got 76.0
+  [PASS]  L2     = 400 mm (joint2 Z offset)  got 400.0
+  [PASS]  A3     = 180 mm (joint3 X offset)  got 180.0
+  [PASS]  A4     = 135 mm (joint4 X offset)  got 135.0
+  [PASS]  A5     = 50 mm  (joint5 X offset)  got 50.0
+  [PASS]  D6     = 10 mm  (magnet Z offset)  got 10.0
+
+TEST 2: Aggregate geometry
+  [PASS]  BASE_HEIGHT ~ 101 mm  got 101.0
+  [PASS]  L_ELBOW = L2 = 400 mm  got 400.0
+  [PASS]  L_WRIST = A3+A4 = 315 mm  got 315.0
+  [PASS]  TOOL = A5+D6 = 60 mm  got 60.0
+  [INFO]  MAX_REACH = 775.0 mm  (spec 750mm effective)
+
+TEST 3: HOME_CONFIG = [0, +90, -90, 0, 0, 0] deg
+  [PASS]  J1 = 0 deg  got 0.000
+  [PASS]  J2 = 90 deg  got 90.000
+  [PASS]  J3 = -90 deg  got -90.000
+  [PASS]  J4 = 0 deg  got 0.000
+  [PASS]  J5 = 0 deg  got 0.000
+  [PASS]  J6 = 0 deg  got 0.000
+
+TEST 4: FK at zero pose [0,0,0,0,0,0]
+  EE pos: X=365.00mm  Y=0.00mm  Z=511.00mm
+  [PASS]  X ~ 365mm  got 365.00mm
+  [PASS]  Z ~ 511mm  got 511.00mm
+
+TEST 5: FK at HOME pose [0, +90, -90, 0, 0, 0]
+  Home EE pos: X=765.00mm  Y=0.0000mm  Z=111.00mm
+  [PASS]  Y ~ 0 mm (symmetric about XZ plane)  got 0.000mm
+  [INFO]  Reach at home = X=765.0mm  Z=111.0mm
+
+TEST 6: Joint limits
+  [PASS]  J1 limits correct  [-180, 180] deg
+  [PASS]  J2 limits correct  [-90, 90] deg
+  [PASS]  J3 limits correct  [-90, 63] deg
+  [PASS]  J4 limits correct  [-180, 180] deg
+  [PASS]  J5 limits correct  [-90, 63] deg
+  [PASS]  J6 limits correct  [-360, 360] deg
+
+TEST 7: log_SO3
+  [PASS]  log_SO3(I) = [0,0,0]  norm=0.0
+  [PASS]  log_SO3(Rz90) norm = pi/2  got 1.570796
+
+TEST 8: Jacobian
+  [PASS]  Shape = (6,6)  got (6, 6)
+  [PASS]  No NaN in Jacobian  
+
+TEST 9: FK smoothness (20 random configs)
+  [PASS]  FK smooth (max delta < 50mm per 1mrad step)  max=1.490mm
+
+==========================================================
+  ALL TESTS PASSED
+==========================================================

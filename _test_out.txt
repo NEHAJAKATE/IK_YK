@@ -1,0 +1,51 @@
+﻿=======================================================
+  KINEMATICS GEOMETRY VALIDATION
+=======================================================
+
+TEST 1: Geometry constants
+  [PASS]  BASE_HEIGHT = 100 mm  got 100.0
+  [PASS]  L2 = 400 mm  got 400.0
+  [PASS]  L3 = 300 mm  got 300.0
+  [PASS]  TOOL = 50 mm  got 50.0
+  [PASS]  MAX_REACH = 750 mm  got 750.0
+
+TEST 2: HOME_CONFIG = [0, +90, -90, 0, 0, 0] deg
+  [PASS]  J1 = 0 deg  got 0.000
+  [PASS]  J2 = 90 deg  got 90.000
+  [PASS]  J3 = -90 deg  got -90.000
+  [PASS]  J4 = 0 deg  got 0.000
+  [PASS]  J5 = 0 deg  got 0.000
+  [PASS]  J6 = 0 deg  got 0.000
+
+TEST 3: FK at home pose
+  EE pos: X=400.00mm  Y=0.0000mm  Z=450.00mm
+  [FAIL]  X >= 740 mm  (arm extended fwd)  got 400.0mm
+  [PASS]  Y ~  0 mm  got 0.0000mm
+  [FAIL]  Z = 100 mm (base_height)  got 450.00mm
+
+TEST 4: FK at zero pose [0,0,0,0,0,0]
+  EE pos: X=0.00mm  Y=0.00mm  Z=850.00mm
+  [PASS]  Z ~ 850mm (arm pointing up)  got 850.00mm
+
+TEST 5: Joint limits
+  [PASS]  J1 limits correct  [-180, 180] deg
+  [PASS]  J2 limits correct  [-90, 90] deg
+  [PASS]  J3 limits correct  [-90, 63] deg
+  [PASS]  J4 limits correct  [-180, 180] deg
+  [PASS]  J5 limits correct  [-90, 63] deg
+  [PASS]  J6 limits correct  [-360, 360] deg
+
+TEST 6: log_SO3
+  [PASS]  log_SO3(I) = [0,0,0]  norm=0.0
+  [PASS]  log_SO3(Rz90) norm = pi/2  got 1.570796
+
+TEST 7: Jacobian
+  [PASS]  Shape = (6, 6)  got (6, 6)
+  [PASS]  No NaN in Jacobian  
+
+TEST 8: FK smoothness (20 random configs)
+  [PASS]  FK smooth (max delta < 20mm per 1mrad step)  max=2.688mm
+
+=======================================================
+  SOME TESTS FAILED
+=======================================================
